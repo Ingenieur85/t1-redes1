@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "if.h": "c",
+        "unistd.h": "c",
+        "header.h": "c",
+        "frame.h": "c"
+    }
+}
