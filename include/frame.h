@@ -3,11 +3,15 @@
 
 #include <stdint.h>
 
+#define INTERFACE "lo"
+
 #define START_MARKER 0x7E
 #define MAX_DATA_SIZE 63
 
 /* Socket address structure*/
 //struct sockaddr_ll socket_address;
+
+
 
 // Define the custom frame structure
 struct frame{

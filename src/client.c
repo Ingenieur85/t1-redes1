@@ -3,7 +3,7 @@
 
 int main() {
     struct frame f;
-    int sockfd = create_raw_socket("eth0");
+    int sockfd = create_raw_socket(INTERFACE);
   
     uint8_t buffer[MAX_DATA_SIZE] = {1};
     buffer[0] = 0;

@@ -25,14 +25,14 @@ void handle_request(int sockfd, struct sockaddr_ll *socket_address) {
 
 int main() {
     struct frame f;
-    int sockfd = create_raw_socket("eth0");
+    int sockfd = create_raw_socket("eth0"); // Replace "eth0" with your interface
     uint8_t buffer[MAX_DATA_SIZE];
 
     while (1) {
         /* Receive a frame */
-        if (receive_frame(sockfd, &f) == -1) {
+        if (receive_frame(sockfd, &f) != -1) {
             data_from_frame(&f, buffer);
-            printf("Frame recebida: %d\n", f.type);
+            printf("Frame received: %d\n", f.type);
             printf("Data: %s\n", buffer);
         }
     }
@@ -40,6 +40,7 @@ int main() {
     close(sockfd);
     return 0;
 }
+
 
 
 
