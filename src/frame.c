@@ -35,6 +35,7 @@ int receive_frame(int sockfd, struct frame *frm) {
 /* Function to read data from a packet */
 void data_from_frame(struct frame *frm, uint8_t *buffer) {
     memcpy(buffer, frm->data, frm->size);
+    buffer[frm->size] = '\0'; // Ensure null-termination for printing
 }
 
 /*

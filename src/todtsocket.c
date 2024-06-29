@@ -1,4 +1,9 @@
-#include "header.h"
+#include <arpa/inet.h>
+#include <net/ethernet.h>
+#include <linux/if_packet.h>
+#include <net/if.h>
+#include <stdlib.h>
+#include <stdio.h>
  
 int create_raw_socket(char* nome_interface_rede) {
     // Cria arquivo para o socket sem qualquer protocolo

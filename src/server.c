@@ -25,7 +25,7 @@ void handle_request(int sockfd, struct sockaddr_ll *socket_address) {
 
 int main() {
     struct frame f;
-    int sockfd = create_raw_socket("eth0"); // Replace "eth0" with your interface
+    int sockfd = ConexaoRawSocket("eth0"); // Replace "eth0" with your interface
     uint8_t buffer[MAX_DATA_SIZE];
 
     while (1) {
