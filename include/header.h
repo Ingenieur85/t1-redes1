@@ -16,5 +16,6 @@
 #include <unistd.h>
 
 int create_raw_socket(char* nome_interface_rede);
+int ConexaoRawSocket(char *device);
 
 #endif // HEADER_H

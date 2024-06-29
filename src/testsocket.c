@@ -54,7 +54,7 @@ void run_server(char* interface) {
     printf("Server is waiting for a message...\n");
 
     // Receive message from client
-    ssize_t num_bytes = recvfrom(sock, buffer, BUF_SIZE, 0, (struct sockaddr*)&client_addr, &addr_len);
+    ssize_t num_bytes = recv(sock, buffer, BUF_SIZE, 0);
     if (num_bytes < 0) {
         perror("Server recvfrom failed");
         close(sock);
@@ -65,7 +65,7 @@ void run_server(char* interface) {
 
     // Send acknowledgment to client
     char ack[] = "ACK";
-    if (sendto(sock, ack, sizeof(ack), 0, (struct sockaddr*)&client_addr, addr_len) < 0) {
+    if (send(sock, ack, sizeof(ack), 0) < 0) {
         perror("Server sendto failed");
         close(sock);
         exit(EXIT_FAILURE);
@@ -89,7 +89,7 @@ void run_client(char* interface) {
     server_addr.sll_ifindex = if_nametoindex(interface);
 
     char message[] = "Hello, Server!";
-    if (sendto(sock, message, sizeof(message), 0, (struct sockaddr*)&server_addr, addr_len) < 0) {
+    if (send(sock, message, sizeof(message), 0) < 0) {
         perror("Client sendto failed");
         close(sock);
         exit(EXIT_FAILURE);
@@ -98,7 +98,7 @@ void run_client(char* interface) {
     printf("Client sent: %s\n", message);
 
     // Receive acknowledgment from server
-    ssize_t num_bytes = recvfrom(sock, buffer, BUF_SIZE, 0, NULL, NULL);
+    ssize_t num_bytes = recv(sock, buffer, BUF_SIZE, 0);
     if (num_bytes < 0) {
         perror("Client recvfrom failed");
         close(sock);
