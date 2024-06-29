@@ -48,9 +48,6 @@ void run_server(char* interface) {
     int sock = create_raw_socket(interface);
     char buffer[BUF_SIZE];
 
-    struct sockaddr_ll client_addr;
-    socklen_t addr_len = sizeof(client_addr);
-
     printf("Server is waiting for a message...\n");
 
     // Receive message from client
@@ -78,15 +75,6 @@ void run_server(char* interface) {
 void run_client(char* interface) {
     int sock = create_raw_socket(interface);
     char buffer[BUF_SIZE];
-
-    struct sockaddr_ll server_addr;
-    socklen_t addr_len = sizeof(server_addr);
-
-    // Setup server address structure
-    memset(&server_addr, 0, sizeof(server_addr));
-    server_addr.sll_family = AF_PACKET;
-    server_addr.sll_protocol = htons(ETH_P_ALL);
-    server_addr.sll_ifindex = if_nametoindex(interface);
 
     char message[] = "Hello, Server!";
     if (send(sock, message, sizeof(message), 0) < 0) {
